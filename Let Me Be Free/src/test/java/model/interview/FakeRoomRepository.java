@@ -23,4 +23,9 @@ public class FakeRoomRepository implements RoomRepository {
                 .build();
     }
 
+    @Override
+    public void cancel(String spaceId) {
+
+    }
+
 }

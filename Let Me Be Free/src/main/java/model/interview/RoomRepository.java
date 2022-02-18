@@ -6,4 +6,5 @@ import java.time.LocalDate;
 
 public interface RoomRepository {
     Space book(LocalDate interviewDate);
+    void cancel(String spaceId);
 }
