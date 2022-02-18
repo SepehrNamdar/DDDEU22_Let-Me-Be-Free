@@ -10,7 +10,7 @@ The rules of this use case are :
  - if many Consultants Can Test with the Profile, the System will choose the first one
  - the HR System should also find an available Room for the Interview Date
 
-# Step 1
+# Step 0
 Take your time to learn the Domain with your group.
 
 Note problems that you recognise in code and share them to each other.
