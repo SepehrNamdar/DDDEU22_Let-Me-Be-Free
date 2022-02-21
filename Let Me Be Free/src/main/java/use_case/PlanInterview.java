@@ -3,7 +3,6 @@ package use_case;
 import model.Space;
 import model.interview.*;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,7 +16,7 @@ public class PlanInterview {
         this.rooms = rooms;
     }
 
-    public Interview scheduleInterview(LocalDate interviewDate, HRCandidate candidate) {
+    public Interview scheduleInterview(InterviewDate interviewDate, HRCandidate candidate) {
         candidate.checkCandidate();
         checkInterviewDate(interviewDate);
 
@@ -42,7 +41,7 @@ public class PlanInterview {
         }
     }
 
-    private void checkInterviewDate(LocalDate interviewDate) {
+    private void checkInterviewDate(InterviewDate interviewDate) {
         if (Objects.isNull(interviewDate)) {
             throw new InterviewDateMissingException();
         }
