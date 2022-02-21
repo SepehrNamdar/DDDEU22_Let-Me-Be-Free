@@ -1,8 +1,8 @@
 package use_case;
 
-import model.Candidate;
 import model.Recruiter;
 import model.Space;
+import model.interview.HRCandidate;
 import model.interview.Interview;
 import model.interview.RecruiterRepository;
 import model.interview.RoomRepository;
@@ -21,7 +21,7 @@ public class PlanInterview {
         this.rooms = rooms;
     }
 
-    public Interview scheduleInterview(LocalDate interviewDate, Candidate candidate) {
+    public Interview scheduleInterview(LocalDate interviewDate, HRCandidate candidate) {
         checkCandidate(candidate);
         checkInterviewDate(interviewDate);
 
@@ -51,7 +51,7 @@ public class PlanInterview {
                 .forEach(recruiter -> recruiter.getAvailabilities().remove(interviewDate));
     }
 
-    private Recruiter findAnAppropriateRecruiter(LocalDate interviewDate, Candidate candidate) {
+    private Recruiter findAnAppropriateRecruiter(LocalDate interviewDate, HRCandidate candidate) {
         return recruiters.findAll().stream()
                 .filter(recruiter -> recruiter.getAvailabilities().contains(interviewDate))
                 .filter(recruiter -> recruiter.getSkills().containsAll(candidate.getSkills()))
@@ -65,7 +65,7 @@ public class PlanInterview {
         }
     }
 
-    private void checkCandidate(Candidate candidate) {
+    private void checkCandidate(HRCandidate candidate) {
         String candidateId = candidate.getId();
         if (Objects.isNull(candidateId) || candidateId.isBlank() || candidateId.isBlank()) {
             throw new CandidateIdMissingException();
