@@ -22,7 +22,7 @@ public class PlanInterview {
     }
 
     public Interview scheduleInterview(LocalDate interviewDate, HRCandidate candidate) {
-        checkCandidate(candidate);
+        candidate.checkCandidate();
         checkInterviewDate(interviewDate);
 
         Recruiter appropriateRecruiter = findAnAppropriateRecruiter(interviewDate, candidate);
@@ -65,10 +65,4 @@ public class PlanInterview {
         }
     }
 
-    private void checkCandidate(HRCandidate candidate) {
-        String candidateId = candidate.getId();
-        if (Objects.isNull(candidateId) || candidateId.isBlank() || candidateId.isBlank()) {
-            throw new CandidateIdMissingException();
-        }
-    }
 }
