@@ -4,7 +4,6 @@ import model.Space;
 import model.interview.*;
 
 import java.util.List;
-import java.util.Objects;
 
 public class PlanInterview {
 
@@ -18,7 +17,7 @@ public class PlanInterview {
 
     public Interview scheduleInterview(InterviewDate interviewDate, HRCandidate candidate) {
         candidate.checkCandidate();
-        checkInterviewDate(interviewDate);
+        interviewDate.checkInterviewDate();
 
         List<HRRecruiter> hrRecruiters = recruiters.findAll();
         HRRecruiter recruiter = candidate.findRecruiter(interviewDate, hrRecruiters);
@@ -38,12 +37,6 @@ public class PlanInterview {
             // cancel the room and raise an exception ?
             // cancel the room and generate an online interview link ?
             // many questions to ask and all depends on a system on which we don't have a control
-        }
-    }
-
-    private void checkInterviewDate(InterviewDate interviewDate) {
-        if (Objects.isNull(interviewDate)) {
-            throw new InterviewDateMissingException();
         }
     }
 
