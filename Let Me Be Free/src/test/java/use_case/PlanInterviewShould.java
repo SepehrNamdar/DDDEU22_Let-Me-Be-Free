@@ -28,8 +28,9 @@ class PlanInterviewShould {
 
     @Test
     void not_schedule_an_interview_for_a_candidate_without_identifier() {
-        LocalDate interviewDate = LocalDate.of(2022, 12, 19);
-        Candidate candidateWithoutId = Candidate.builder().build();
+        InterviewDate interviewDate = new InterviewDate(LocalDate.of(2022, 12, 19));
+        Candidate candidate = Candidate.builder().build();
+        HRCandidate candidateWithoutId = new HRCandidate(candidate);
 
         ThrowingCallable planningInterview =
                 () -> humanResource.scheduleInterview(interviewDate, candidateWithoutId);
@@ -47,7 +48,7 @@ class PlanInterviewShould {
 
     @Test
     void not_schedule_an_interview_when_no_recruiter_is_available_for_the_interview() {
-        LocalDate interviewDate = LocalDate.of(1900, 1, 1);
+        InterviewDate interviewDate = new InterviewDate(LocalDate.of(1900, 1, 1));
 
         ThrowingCallable planningInterview =
                 () -> humanResource.scheduleInterview(interviewDate, getJavaCandidate());
@@ -57,7 +58,7 @@ class PlanInterviewShould {
 
     @Test
     void plan_an_interview_with_the_first_recruiter_who_is_available_for_the_interview_and_can_test_the_candidate() {
-        LocalDate interviewDate = LocalDate.of(2022, 12, 19);
+        InterviewDate interviewDate = new InterviewDate(LocalDate.of(2022, 12, 19));
 
         Interview interview = humanResource.scheduleInterview(interviewDate, getJavaCandidate());
 
@@ -70,17 +71,18 @@ class PlanInterviewShould {
         assertThat(isRecruiterBookedFor(interviewDate)).isTrue();
     }
 
-    private boolean isRecruiterBookedFor(LocalDate interviewDate) {
+    private boolean isRecruiterBookedFor(InterviewDate interviewDate) {
         return recruiters.findAll().stream()
                 .filter(r -> r.getId().equals("101"))
                 .flatMap(r -> r.getAvailabilities().stream())
                 .noneMatch(a -> a.equals(interviewDate));
     }
 
-    private Candidate getJavaCandidate() {
-        return Candidate.builder()
+    private HRCandidate getJavaCandidate() {
+        Candidate java = Candidate.builder()
                 .id(CANDIDATE_ID)
                 .skills(List.of("Java"))
                 .build();
+        return new HRCandidate(java);
     }
 }
