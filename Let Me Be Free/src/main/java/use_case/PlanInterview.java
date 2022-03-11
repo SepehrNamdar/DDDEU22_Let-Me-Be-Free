@@ -9,7 +9,9 @@ import model.interview.RoomRepository;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
+
+import static java.time.LocalDate.now;
+import static java.util.Objects.isNull;
 
 public class PlanInterview {
 
@@ -60,14 +62,14 @@ public class PlanInterview {
     }
 
     private void checkInterviewDate(LocalDate interviewDate) {
-        if (Objects.isNull(interviewDate)) {
+        if (isNull(interviewDate) || interviewDate.isBefore(now())) {
             throw new InterviewDateMissingException();
         }
     }
 
     private void checkCandidate(Candidate candidate) {
         String candidateId = candidate.getId();
-        if (Objects.isNull(candidateId) || candidateId.isBlank() || candidateId.isBlank()) {
+        if (isNull(candidateId) || candidateId.isBlank()) {
             throw new CandidateIdMissingException();
         }
     }

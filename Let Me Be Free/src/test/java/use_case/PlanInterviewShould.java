@@ -46,8 +46,18 @@ class PlanInterviewShould {
     }
 
     @Test
+    void not_schedule_an_interview_when_interview_date_is_passed() {
+        LocalDate passedInterviewDate = LocalDate.of(1900, 12, 19);
+
+        ThrowingCallable planningInterview =
+                () -> humanResource.scheduleInterview(passedInterviewDate, getJavaCandidate());
+
+        assertThatExceptionOfType(InterviewDateMissingException.class).isThrownBy(planningInterview);
+    }
+
+    @Test
     void not_schedule_an_interview_when_no_recruiter_is_available_for_the_interview() {
-        LocalDate interviewDate = LocalDate.of(1900, 1, 1);
+        LocalDate interviewDate = LocalDate.of(2030, 1, 1);
 
         ThrowingCallable planningInterview =
                 () -> humanResource.scheduleInterview(interviewDate, getJavaCandidate());
