@@ -67,4 +67,13 @@ public class PlanInterview {
         }
     }
 
+<<<<<<< HEAD
+    private void checkCandidate(HRCandidate candidate) {
+        String candidateId = candidate.getId();
+        if (isNull(candidateId) || candidateId.isBlank()) {
+            throw new CandidateIdMissingException();
+        }
+    }
+=======
+>>>>>>> 302f4da (Add behaviors to Candidate)
 }
