@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 public class FakeRecruiterRepository implements RecruiterRepository {
 
     private final List<Recruiter> recruiters = new LinkedList<>();
@@ -107,8 +109,8 @@ public class FakeRecruiterRepository implements RecruiterRepository {
     }
 
     @Override
-    public List<Recruiter> findAll() {
-        return recruiters;
+    public List<HRRecruiter> findAll() {
+        return recruiters.stream().map(HRRecruiter::new).collect(toList());
     }
 
 }
