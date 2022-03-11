@@ -1,27 +1,25 @@
 package use_case;
 
 import model.interview.*;
+import service.Verification;
 
 import java.util.List;
-
-import static java.time.LocalDate.now;
-import static java.util.Objects.isNull;
 
 public class PlanInterview {
 
     private final ConsultantRepository consultants;
     private final RoomRepository rooms;
+    private final Verification verifier;
 
-    public PlanInterview(ConsultantRepository consultants, RoomRepository rooms) {
+    public PlanInterview(ConsultantRepository consultants, RoomRepository rooms, Verification verifier) {
         this.consultants = consultants;
         this.rooms = rooms;
+        this.verifier = verifier;
     }
 
     public Interview scheduleInterview(InterviewDate interviewDate, Profile profile) {
-        // TODO : To extract to the Open-Host Service (OHS)
-        profile.checkProfile();
-        interviewDate.checkInterviewDate();
-        // TODO : END
+        verifier.checkCandidate(profile.toCandidate());
+        verifier.checkInterviewDate(interviewDate.toLocalDate());
 
         List<Consultant> consultants = this.consultants.findAll();
         Consultant consultant = profile.findConsultant(interviewDate, consultants);
