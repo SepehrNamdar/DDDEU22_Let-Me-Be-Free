@@ -2,8 +2,9 @@ package model.interview;
 
 import model.Recruiter;
 
-import java.time.LocalDate;
 import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 public class HRRecruiter {
 
@@ -13,7 +14,7 @@ public class HRRecruiter {
         this.recruiter = recruiter;
     }
 
-    public boolean isAvailable(LocalDate interviewDate) {
+    public boolean isAvailable(InterviewDate interviewDate) {
         return getAvailabilities().contains(interviewDate);
     }
 
@@ -21,12 +22,12 @@ public class HRRecruiter {
         return getSkills().containsAll(candidate.getSkills());
     }
 
-    public void book(LocalDate interviewDate) {
-        recruiter.getAvailabilities().remove(interviewDate);
+    public void book(InterviewDate interviewDate) {
+        recruiter.getAvailabilities().remove(interviewDate.getInterviewDate());
     }
 
-    public List<LocalDate> getAvailabilities() {
-        return recruiter.getAvailabilities();
+    public List<InterviewDate> getAvailabilities() {
+        return recruiter.getAvailabilities().stream().map(InterviewDate::new).collect(toList());
     }
 
     public List<String> getSkills() {
