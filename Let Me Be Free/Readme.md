@@ -1,12 +1,8 @@
-# Step 1 resume
-When you go to a cash desk, and you should pay 10$ what do you do ?
-Do you give your wallet to the cashier and ask him to find 10$ in it ?
+# Step 2 resume
+We learned where to use an ACL, and we saw a way to how to implement it.
+ACL is one of the most useful Context Mapping strategies and perhaps the most important but, there are some other strategies to discover ...
+# Step 3
+Sometimes we can find a service which is duplicated in many systems and contained the same rules in each one.
+For example, you can be informed that all checks which you can find in HR System are also implemented in some other systems by other development teams.
 
-The idea of an Anti-Corruption Layer (ACL) is the same. It means giving just what your Domain need to it. 
-We partially achieve this goal by creating new objects in our Domain model.
-# Step 2
-But an ACL can do more. As you noticed the terms which are used in the Shared Kernel system does not match our Ubiquitous Language (UL).
-
-We can use our new objects and force them to respect our UL.
-So, let's have a look to our UL and translate our code to complete the ACL.
-
+Try to extract these services out of HR System and put them in an Open Host Service.

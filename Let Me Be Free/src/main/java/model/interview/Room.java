@@ -24,6 +24,7 @@ public class Room {
         return room.getAddress();
     }
 
+    // This check method is not included in Open-Host Service
     public void checkRoom() {
         if (!(getCapacity() >= 2)
                 || !getEquipments().containsAll(List.of("PC", "Monitor"))) {

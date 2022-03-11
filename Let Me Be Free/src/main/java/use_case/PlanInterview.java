@@ -18,8 +18,10 @@ public class PlanInterview {
     }
 
     public Interview scheduleInterview(InterviewDate interviewDate, Profile profile) {
+        // TODO : To extract to the Open-Host Service (OHS)
         profile.checkProfile();
         interviewDate.checkInterviewDate();
+        // TODO : END
 
         List<Consultant> consultants = this.consultants.findAll();
         Consultant consultant = profile.findConsultant(interviewDate, consultants);
