@@ -1,24 +1,24 @@
 package model.interview;
 
 public class Interview {
-    private final HRRecruiter recruiter;
-    private final HRCandidate candidate;
+    private final Consultant consultant;
+    private final Profile profile;
     private final InterviewDate interviewDate;
     private final Room room;
 
-    public Interview(HRRecruiter recruiter, HRCandidate candidate, InterviewDate interviewDate, Room room) {
-        this.recruiter = recruiter;
-        this.candidate = candidate;
+    public Interview(Consultant consultant, Profile profile, InterviewDate interviewDate, Room room) {
+        this.consultant = consultant;
+        this.profile = profile;
         this.interviewDate = interviewDate;
         this.room = room;
     }
 
-    public HRRecruiter getRecruiter() {
-        return recruiter;
+    public Consultant getConsultant() {
+        return consultant;
     }
 
-    public HRCandidate getCandidate() {
-        return candidate;
+    public Profile getProfile() {
+        return profile;
     }
 
     public InterviewDate getInterviewDate() {

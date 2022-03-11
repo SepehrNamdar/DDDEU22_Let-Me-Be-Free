@@ -49,8 +49,13 @@ class PlanInterviewShould {
     }
 
     @Test
-    void not_schedule_an_interview_when_no_consultant_is_available_for_the_interview() {
+<<<<<<< HEAD
+    void not_schedule_an_interview_when_no_recruiter_is_available_for_the_interview() {
         InterviewDate interviewDate = new InterviewDate(LocalDate.of(2030, 1, 1));
+=======
+    void not_schedule_an_interview_when_no_consultant_is_available_for_the_interview() {
+        InterviewDate interviewDate = new InterviewDate(LocalDate.of(1900, 1, 1));
+>>>>>>> 98c3d1d (Use the Anti-Corruption Layer to translate foreign terms and ensure that our code respect the Ubiquitous Language)
 
         ThrowingCallable planningInterview =
                 () -> humanResource.scheduleInterview(interviewDate, getJavaCandidate());
