@@ -9,7 +9,7 @@ import java.util.Map;
 public class FakeRoomRepository implements RoomRepository {
 
     @Override
-    public Space book(LocalDate interviewDate) {
+    public Space book(InterviewDate interviewDate) {
         return Space.builder()
                 .address("Room 2.1")
                 .equipments(List.of("PC", "Monitor"))
