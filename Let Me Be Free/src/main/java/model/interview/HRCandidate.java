@@ -1,8 +1,10 @@
 package model.interview;
 
 import model.Candidate;
+import use_case.CandidateIdMissingException;
 
 import java.util.List;
+import java.util.Objects;
 
 public class HRCandidate {
 
@@ -18,5 +20,12 @@ public class HRCandidate {
 
     public List<String> getSkills() {
         return candidate.getSkills();
+    }
+
+    public void checkCandidate() {
+        String candidateId = getId();
+        if (Objects.isNull(candidateId) || candidateId.isBlank() || candidateId.isBlank()) {
+            throw new CandidateIdMissingException();
+        }
     }
 }
