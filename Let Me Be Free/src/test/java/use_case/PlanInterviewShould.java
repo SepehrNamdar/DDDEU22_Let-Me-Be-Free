@@ -39,21 +39,13 @@ class PlanInterviewShould {
     }
 
     @Test
-    void not_schedule_an_interview_when_interview_date_is_missing() {
-        ThrowingCallable planningInterview =
-                () -> humanResource.scheduleInterview(null, getJavaCandidate());
-
-        assertThatExceptionOfType(InterviewDateMissingException.class).isThrownBy(planningInterview);
-    }
-
-    @Test
     void not_schedule_an_interview_when_interview_date_is_passed() {
         InterviewDate passedInterviewDate = new InterviewDate(LocalDate.of(1900, 12, 19));
 
         ThrowingCallable planningInterview =
                 () -> humanResource.scheduleInterview(passedInterviewDate, getJavaCandidate());
 
-        assertThatExceptionOfType(InterviewDateMissingException.class).isThrownBy(planningInterview);
+        assertThatExceptionOfType(InterviewDateIsPassedException.class).isThrownBy(planningInterview);
     }
 
     @Test

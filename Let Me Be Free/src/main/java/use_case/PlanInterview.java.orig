@@ -4,9 +4,12 @@ import model.Space;
 import model.interview.*;
 
 import java.util.List;
+<<<<<<< HEAD
 
 import static java.time.LocalDate.now;
 import static java.util.Objects.isNull;
+=======
+>>>>>>> e251b13 (Add behaviors to interviewDate)
 
 public class PlanInterview {
 
@@ -20,7 +23,7 @@ public class PlanInterview {
 
     public Interview scheduleInterview(InterviewDate interviewDate, HRCandidate candidate) {
         candidate.checkCandidate();
-        checkInterviewDate(interviewDate);
+        interviewDate.checkInterviewDate();
 
         List<HRRecruiter> hrRecruiters = recruiters.findAll();
         HRRecruiter recruiter = candidate.findRecruiter(interviewDate, hrRecruiters);
@@ -44,14 +47,12 @@ public class PlanInterview {
     }
 
 <<<<<<< HEAD
-    private void checkInterviewDate(LocalDate interviewDate) {
-        if (isNull(interviewDate) || interviewDate.isBefore(now())) {
-=======
     private void checkInterviewDate(InterviewDate interviewDate) {
-        if (Objects.isNull(interviewDate)) {
->>>>>>> 63dcc33 (Free InterviewDate)
+        if (isNull(interviewDate) || interviewDate.getInterviewDate().isBefore(now())) {
             throw new InterviewDateMissingException();
         }
     }
 
+=======
+>>>>>>> e251b13 (Add behaviors to interviewDate)
 }
