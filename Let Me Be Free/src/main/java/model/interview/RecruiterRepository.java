@@ -5,5 +5,5 @@ import model.Recruiter;
 import java.util.List;
 
 public interface RecruiterRepository {
-    List<Recruiter> findAll();
+    List<HRRecruiter> findAll();
 }
