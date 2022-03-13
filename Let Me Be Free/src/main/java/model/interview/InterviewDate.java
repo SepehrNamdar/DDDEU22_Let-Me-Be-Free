@@ -37,4 +37,8 @@ public class InterviewDate {
     public int hashCode() {
         return Objects.hash(interviewDate);
     }
+
+    public LocalDate toLocalDate() {
+        return interviewDate;
+    }
 }
