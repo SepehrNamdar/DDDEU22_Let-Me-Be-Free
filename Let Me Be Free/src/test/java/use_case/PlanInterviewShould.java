@@ -17,25 +17,25 @@ class PlanInterviewShould {
     private static final String CANDIDATE_ID = "fake_id";
 
     private PlanInterview humanResource;
-    private RecruiterRepository recruiters;
+    private ConsultantRepository consultants;
 
     @BeforeEach
     void setUp() {
-        recruiters = new FakeRecruiterRepository();
+        consultants = new FakeConsultantRepository();
         RoomRepository rooms = new FakeRoomRepository();
-        humanResource = new PlanInterview(recruiters, rooms);
+        humanResource = new PlanInterview(consultants, rooms);
     }
 
     @Test
     void not_schedule_an_interview_for_a_candidate_without_identifier() {
         InterviewDate interviewDate = new InterviewDate(LocalDate.of(2022, 12, 19));
         Candidate candidate = Candidate.builder().build();
-        HRCandidate candidateWithoutId = new HRCandidate(candidate);
+        Profile profileWithoutId = new Profile(candidate);
 
         ThrowingCallable planningInterview =
-                () -> humanResource.scheduleInterview(interviewDate, candidateWithoutId);
+                () -> humanResource.scheduleInterview(interviewDate, profileWithoutId);
 
-        assertThatExceptionOfType(CandidateIdMissingException.class).isThrownBy(planningInterview);
+        assertThatExceptionOfType(ProfileIdMissingException.class).isThrownBy(planningInterview);
     }
 
     @Test
@@ -49,42 +49,42 @@ class PlanInterviewShould {
     }
 
     @Test
-    void not_schedule_an_interview_when_no_recruiter_is_available_for_the_interview() {
+    void not_schedule_an_interview_when_no_consultant_is_available_for_the_interview() {
         InterviewDate interviewDate = new InterviewDate(LocalDate.of(2030, 1, 1));
 
         ThrowingCallable planningInterview =
                 () -> humanResource.scheduleInterview(interviewDate, getJavaCandidate());
 
-        assertThatExceptionOfType(AnyRecruiterIsAvailableException.class).isThrownBy(planningInterview);
+        assertThatExceptionOfType(AnyConsultantIsAvailableException.class).isThrownBy(planningInterview);
     }
 
     @Test
-    void plan_an_interview_with_the_first_recruiter_who_is_available_for_the_interview_and_can_test_the_candidate() {
+    void plan_an_interview_with_the_first_consultant_who_is_available_for_the_interview_and_can_test_the_profile() {
         InterviewDate interviewDate = new InterviewDate(LocalDate.of(2022, 12, 19));
 
         Interview interview = humanResource.scheduleInterview(interviewDate, getJavaCandidate());
 
-        assertThat(interview.getRecruiter().getId()).isEqualTo("101");
-        assertThat(interview.getRecruiter().getName()).isEqualTo("Steve");
-        assertThat(interview.getRecruiter().getFirstName()).isEqualTo("Emma");
-        assertThat(interview.getCandidate().getId()).isEqualTo(CANDIDATE_ID);
+        assertThat(interview.getConsultant().getId()).isEqualTo("101");
+        assertThat(interview.getConsultant().getName()).isEqualTo("Steve");
+        assertThat(interview.getConsultant().getFirstName()).isEqualTo("Emma");
+        assertThat(interview.getProfile().getId()).isEqualTo(CANDIDATE_ID);
         assertThat(interview.getInterviewDate()).isEqualTo(interviewDate);
         assertThat(interview.getRoom().getAddress()).isEqualTo("Room 2.1");
         assertThat(isRecruiterBookedFor(interviewDate)).isTrue();
     }
 
     private boolean isRecruiterBookedFor(InterviewDate interviewDate) {
-        return recruiters.findAll().stream()
-                .filter(r -> r.getId().equals("101"))
-                .flatMap(r -> r.getAvailabilities().stream())
-                .noneMatch(a -> a.equals(interviewDate));
+        return consultants.findAll().stream()
+                .filter(consultant -> consultant.getId().equals("101"))
+                .flatMap(consultant -> consultant.getAvailabilities().stream())
+                .noneMatch(availability -> availability.equals(interviewDate));
     }
 
-    private HRCandidate getJavaCandidate() {
-        Candidate java = Candidate.builder()
+    private Profile getJavaCandidate() {
+        Candidate javaCandidate = Candidate.builder()
                 .id(CANDIDATE_ID)
                 .skills(List.of("Java"))
                 .build();
-        return new HRCandidate(java);
+        return new Profile(javaCandidate);
     }
 }
