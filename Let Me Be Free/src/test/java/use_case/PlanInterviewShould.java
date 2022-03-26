@@ -29,7 +29,8 @@ class PlanInterviewShould {
     @Test
     void not_schedule_an_interview_for_a_candidate_without_identifier() {
         LocalDate interviewDate = LocalDate.of(2022, 12, 19);
-        Candidate candidateWithoutId = Candidate.builder().build();
+        Candidate candidate = Candidate.builder().build();
+        HRCandidate candidateWithoutId = new HRCandidate(candidate);
 
         ThrowingCallable planningInterview =
                 () -> humanResource.scheduleInterview(interviewDate, candidateWithoutId);
@@ -87,10 +88,11 @@ class PlanInterviewShould {
                 .noneMatch(a -> a.equals(interviewDate));
     }
 
-    private Candidate getJavaCandidate() {
-        return Candidate.builder()
+    private HRCandidate getJavaCandidate() {
+        Candidate java = Candidate.builder()
                 .id(CANDIDATE_ID)
                 .skills(List.of("Java"))
                 .build();
+        return new HRCandidate(java);
     }
 }
