@@ -1,37 +1,31 @@
 package model.interview;
 
-import model.Candidate;
-import model.Recruiter;
-import model.Space;
-
-import java.time.LocalDate;
-
 public class Interview {
-    private final Recruiter recruiter;
-    private final Candidate candidate;
-    private final LocalDate interviewDate;
-    private final Space room;
+    private final HRRecruiter recruiter;
+    private final HRCandidate candidate;
+    private final InterviewDate interviewDate;
+    private final Room room;
 
-    public Interview(Recruiter recruiter, Candidate candidate, LocalDate interviewDate, Space room) {
+    public Interview(HRRecruiter recruiter, HRCandidate candidate, InterviewDate interviewDate, Room room) {
         this.recruiter = recruiter;
         this.candidate = candidate;
         this.interviewDate = interviewDate;
         this.room = room;
     }
 
-    public Recruiter getRecruiter() {
+    public HRRecruiter getRecruiter() {
         return recruiter;
     }
 
-    public Candidate getCandidate() {
+    public HRCandidate getCandidate() {
         return candidate;
     }
 
-    public LocalDate getInterviewDate() {
+    public InterviewDate getInterviewDate() {
         return interviewDate;
     }
 
-    public Space getRoom() {
+    public Room getRoom() {
         return room;
     }
 }
