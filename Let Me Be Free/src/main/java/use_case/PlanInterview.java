@@ -15,8 +15,10 @@ public class PlanInterview {
     }
 
     public Interview scheduleInterview(InterviewDate interviewDate, Profile profile) {
-        profile.checkProfile();
-        interviewDate.checkInterviewDate();
+        ProfileValidator profileValidator = new ProfileValidator();
+        profileValidator.check(profile);
+        InterviewDateValidator interviewDateValidator = new InterviewDateValidator();
+        interviewDateValidator.check(interviewDate);
 
         List<Consultant> consultants = this.consultants.findAll();
         Consultant consultant = profile.findConsultant(interviewDate, consultants);
