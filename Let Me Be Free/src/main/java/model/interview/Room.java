@@ -8,8 +8,8 @@ public class Room {
 
     private final Space room;
 
-    public Room(Space room) {
-        this.room = room;
+    public Room(Space space) {
+        this.room = space;
     }
 
     public int getCapacity() {

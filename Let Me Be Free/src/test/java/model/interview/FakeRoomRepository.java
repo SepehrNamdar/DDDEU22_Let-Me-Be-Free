@@ -9,8 +9,8 @@ import java.util.Map;
 public class FakeRoomRepository implements RoomRepository {
 
     @Override
-    public Space book(InterviewDate interviewDate) {
-        return Space.builder()
+    public Room book(InterviewDate interviewDate) {
+        return new Room(Space.builder()
                 .address("Room 2.1")
                 .equipments(List.of("PC", "Monitor"))
                 .availabilities(List.of(
@@ -20,11 +20,11 @@ public class FakeRoomRepository implements RoomRepository {
                 .location("Paris")
                 .participants("John Doe & HR")
                 .info(Map.of("Recruiter", Map.of(LocalDate.of(2022, 12, 22), "Steve Jones")))
-                .build();
+                .build());
     }
 
     @Override
-    public void cancel(String spaceId) {
+    public void cancel(String roomId) {
 
     }
 
