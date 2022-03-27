@@ -20,7 +20,7 @@ public class PlanInterview {
 
     public Interview scheduleInterview(InterviewDate interviewDate, HRCandidate candidate) {
         candidate.checkCandidate();
-        checkInterviewDate(interviewDate);
+        interviewDate.checkInterviewDate();
 
         List<HRRecruiter> hrRecruiters = recruiters.findAll();
         HRRecruiter recruiter = candidate.findRecruiter(interviewDate, hrRecruiters);
@@ -40,12 +40,6 @@ public class PlanInterview {
             // cancel the room and raise an exception ?
             // cancel the room and generate an online interview link ?
             // many questions to ask and all depends on a system on which we don't have a control
-        }
-    }
-
-    private void checkInterviewDate(InterviewDate interviewDate) {
-        if (isNull(interviewDate) || interviewDate.getInterviewDate().isBefore(now())) {
-            throw new InterviewDateMissingException();
         }
     }
 
