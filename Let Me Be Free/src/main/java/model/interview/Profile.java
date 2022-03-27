@@ -24,22 +24,15 @@ public class Profile {
         return profile.getSkills();
     }
 
-    public void checkProfile() {
-        String profileId = getId();
-        if (isInvalid(profileId)) {
-            throw new ProfileIdMissingException();
-        }
-    }
-
-    private boolean isInvalid(String profileId) {
-        return isNull(profileId) || profileId.isBlank() || profileId.isEmpty();
-    }
-
     public Consultant findConsultant(InterviewDate interviewDate, List<Consultant> consultants) {
         return consultants.stream()
                 .filter(consultant -> consultant.isAvailable(interviewDate))
                 .filter(consultant -> consultant.canTest(this))
                 .findFirst()
                 .orElseThrow(AnyConsultantIsAvailableException::new);
+    }
+
+    public Candidate toCandidate() {
+        return profile;
     }
 }

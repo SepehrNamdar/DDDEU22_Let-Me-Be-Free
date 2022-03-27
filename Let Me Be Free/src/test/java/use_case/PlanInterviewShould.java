@@ -5,6 +5,9 @@ import model.interview.*;
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import service.CandidateIdMissingException;
+import service.InterviewDateMissingException;
+import service.Verifier;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -23,7 +26,7 @@ class PlanInterviewShould {
     void setUp() {
         consultants = new FakeConsultantRepository();
         RoomRepository rooms = new FakeRoomRepository();
-        humanResource = new PlanInterview(consultants, rooms);
+        humanResource = new PlanInterview(consultants, rooms, new Verifier());
     }
 
     @Test
@@ -35,7 +38,7 @@ class PlanInterviewShould {
         ThrowingCallable planningInterview =
                 () -> humanResource.scheduleInterview(interviewDate, profileWithoutId);
 
-        assertThatExceptionOfType(ProfileIdMissingException.class).isThrownBy(planningInterview);
+        assertThatExceptionOfType(CandidateIdMissingException.class).isThrownBy(planningInterview);
     }
 
     @Test
@@ -45,7 +48,7 @@ class PlanInterviewShould {
         ThrowingCallable planningInterview =
                 () -> humanResource.scheduleInterview(passedInterviewDate, getJavaProfile());
 
-        assertThatExceptionOfType(InterviewDateIsPassedException.class).isThrownBy(planningInterview);
+        assertThatExceptionOfType(InterviewDateMissingException.class).isThrownBy(planningInterview);
     }
 
     @Test
