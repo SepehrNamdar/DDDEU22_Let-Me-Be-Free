@@ -4,31 +4,28 @@ import model.interview.*;
 
 import java.util.List;
 
-import static java.time.LocalDate.now;
-import static java.util.Objects.isNull;
-
 public class PlanInterview {
 
-    private final RecruiterRepository recruiters;
+    private final ConsultantRepository consultants;
     private final RoomRepository rooms;
 
-    public PlanInterview(RecruiterRepository recruiters, RoomRepository rooms) {
-        this.recruiters = recruiters;
+    public PlanInterview(ConsultantRepository consultants, RoomRepository rooms) {
+        this.consultants = consultants;
         this.rooms = rooms;
     }
 
-    public Interview scheduleInterview(InterviewDate interviewDate, HRCandidate candidate) {
-        candidate.checkCandidate();
+    public Interview scheduleInterview(InterviewDate interviewDate, Profile profile) {
+        profile.checkProfile();
         interviewDate.checkInterviewDate();
 
-        List<HRRecruiter> hrRecruiters = recruiters.findAll();
-        HRRecruiter recruiter = candidate.findRecruiter(interviewDate, hrRecruiters);
-        recruiter.book(interviewDate);
-        Room bookedRoom = new Room(rooms.book(interviewDate));
+        List<Consultant> consultants = this.consultants.findAll();
+        Consultant consultant = profile.findConsultant(interviewDate, consultants);
+        consultant.book(interviewDate);
+        Room bookedRoom = rooms.book(interviewDate);
 
         bookedRoom.checkRoom();
 
-        return new Interview(recruiter, candidate, interviewDate, bookedRoom);
+        return new Interview(consultant, profile, interviewDate, bookedRoom);
     }
 
 }
