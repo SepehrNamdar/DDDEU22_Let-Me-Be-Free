@@ -4,7 +4,6 @@ import model.Candidate;
 import use_case.AnyRecruiterIsAvailableException;
 import use_case.CandidateIdMissingException;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import static java.util.Objects.isNull;
@@ -32,7 +31,7 @@ public class HRCandidate {
         }
     }
 
-    public HRRecruiter findRecruiter(LocalDate interviewDate, List<HRRecruiter> hrRecruiters) {
+    public HRRecruiter findRecruiter(InterviewDate interviewDate, List<HRRecruiter> hrRecruiters) {
         return hrRecruiters.stream()
                 .filter(recruiter -> recruiter.isAvailable(interviewDate))
                 .filter(recruiter -> recruiter.canTest(this))

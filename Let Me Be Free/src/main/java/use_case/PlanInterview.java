@@ -3,7 +3,6 @@ package use_case;
 import model.Space;
 import model.interview.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import static java.time.LocalDate.now;
@@ -19,7 +18,7 @@ public class PlanInterview {
         this.rooms = rooms;
     }
 
-    public Interview scheduleInterview(LocalDate interviewDate, HRCandidate candidate) {
+    public Interview scheduleInterview(InterviewDate interviewDate, HRCandidate candidate) {
         candidate.checkCandidate();
         checkInterviewDate(interviewDate);
 
@@ -44,8 +43,8 @@ public class PlanInterview {
         }
     }
 
-    private void checkInterviewDate(LocalDate interviewDate) {
-        if (isNull(interviewDate) || interviewDate.isBefore(now())) {
+    private void checkInterviewDate(InterviewDate interviewDate) {
+        if (isNull(interviewDate) || interviewDate.getInterviewDate().isBefore(now())) {
             throw new InterviewDateMissingException();
         }
     }
