@@ -31,3 +31,20 @@ This Kata is splitted in 4 steps (branches step_1, step-2, step-3 and step-4).
 Each step contains a solution on a branche named step-x_solution where x is the number of step.
 You can read the readme of each step starting with step-0 and you can check the solution branch if needed.
 If you don't have time to finish a step in appropriated time, don't worry, you can checkout the next step which contains a possible solution.
+
+# Domain
+As a Human Resource
+I want to find an available Recruiter
+According to my Candidate Availabilities
+“Who can test”* my Candidate.
+
+Who can test : The Recruiter should cover all Candidate’s Skills.
+
+# Ubiquitous Language
+Consultant : A technical member of the company that should match the Profile of a Candidate
+Profile : Resume of the Candidate
+Interview Date : The day where Consultant & Candidate meet each other to do the evaluation
+Candidate : Someone who applied to passe the interview process
+Interview : A structured conversation where one participant asks questions, and the other provides answers
+Room : A place where the Interview will take place
+Human Resource : A member of HR department who will be in charged to organize the Interview
