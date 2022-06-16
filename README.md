@@ -42,9 +42,15 @@ Who can test : The Recruiter should cover all Candidate’s Skills.
 
 # Ubiquitous Language
 Consultant : A technical member of the company that should match the Profile of a Candidate
+
 Profile : Resume of the Candidate
+
 Interview Date : The day where Consultant & Candidate meet each other to do the evaluation
+
 Candidate : Someone who applied to passe the interview process
+
 Interview : A structured conversation where one participant asks questions, and the other provides answers
+
 Room : A place where the Interview will take place
+
 Human Resource : A member of HR department who will be in charged to organize the Interview
