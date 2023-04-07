@@ -2,11 +2,8 @@ package model.interview;
 
 import model.Candidate;
 import use_case.AnyConsultantIsAvailableException;
-import use_case.ProfileIdMissingException;
 
 import java.util.List;
-
-import static java.util.Objects.isNull;
 
 public class Profile {
 

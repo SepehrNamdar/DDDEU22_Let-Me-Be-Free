@@ -1,11 +1,7 @@
 package model.interview;
 
-import use_case.InterviewDateIsPassedException;
-
 import java.time.LocalDate;
 import java.util.Objects;
-
-import static java.time.LocalDate.now;
 
 public class InterviewDate {
 
@@ -18,12 +14,6 @@ public class InterviewDate {
     public LocalDate getInterviewDate() {
         return interviewDate;
     }
-        
-    public void checkInterviewDate() {
-        if (interviewDate.isBefore(now())) {
-            throw new InterviewDateIsPassedException();
-        }
-    }    
 
     @Override
     public boolean equals(Object o) {
