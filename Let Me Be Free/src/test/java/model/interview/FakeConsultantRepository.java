@@ -10,11 +10,11 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-public class FakeRecruiterRepository implements RecruiterRepository {
+public class FakeConsultantRepository implements ConsultantRepository {
 
     private final List<Recruiter> recruiters = new LinkedList<>();
 
-    public FakeRecruiterRepository() {
+    public FakeConsultantRepository() {
         recruiters.add(Recruiter.builder()
                         .id("123")
                         .name("Doe")
@@ -109,8 +109,8 @@ public class FakeRecruiterRepository implements RecruiterRepository {
     }
 
     @Override
-    public List<HRRecruiter> findAll() {
-        return recruiters.stream().map(HRRecruiter::new).collect(toList());
+    public List<Consultant> findAll() {
+        return recruiters.stream().map(Consultant::new).collect(toList());
     }
 
 }
