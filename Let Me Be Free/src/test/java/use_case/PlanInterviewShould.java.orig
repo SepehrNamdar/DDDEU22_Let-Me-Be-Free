@@ -28,12 +28,17 @@ class PlanInterviewShould {
 
     @Test
     void not_schedule_an_interview_for_a_candidate_without_identifier() {
+<<<<<<< HEAD
         LocalDate interviewDate = LocalDate.of(2023, 12, 19);
         Candidate candidateWithoutId = Candidate.builder().build();
-        HRCandidate hrCandidate = new HRCandidate(candidateWithoutId);
+=======
+        LocalDate interviewDate = LocalDate.of(2023, 12, 19);
+        Candidate candidate = Candidate.builder().build();
+        HRCandidate candidateWithoutId = new HRCandidate(candidate);
+>>>>>>> 95ba74b (Free Candidate)
 
         ThrowingCallable planningInterview =
-                () -> humanResource.scheduleInterview(interviewDate, hrCandidate);
+                () -> humanResource.scheduleInterview(interviewDate, candidateWithoutId);
 
         assertThatExceptionOfType(CandidateIdMissingException.class).isThrownBy(planningInterview);
     }
