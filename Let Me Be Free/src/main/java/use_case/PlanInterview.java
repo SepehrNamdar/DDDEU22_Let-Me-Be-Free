@@ -2,10 +2,7 @@ package use_case;
 
 import model.Recruiter;
 import model.Space;
-import model.interview.HRCandidate;
-import model.interview.Interview;
-import model.interview.RecruiterRepository;
-import model.interview.RoomRepository;
+import model.interview.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -27,7 +24,7 @@ public class PlanInterview {
         candidate.checkCandidate();
         checkInterviewDate(interviewDate);
 
-        Recruiter appropriateRecruiter = findAnAppropriateRecruiter(interviewDate, candidate);
+        HRRecruiter appropriateRecruiter = findAnAppropriateRecruiter(interviewDate, candidate);
         bookRecruiter(interviewDate, appropriateRecruiter);
         Space bookedRoom = rooms.book(interviewDate);
 
@@ -47,13 +44,13 @@ public class PlanInterview {
         }
     }
 
-    private void bookRecruiter(LocalDate interviewDate, Recruiter appropriateRecruiter) {
+    private void bookRecruiter(LocalDate interviewDate, HRRecruiter appropriateRecruiter) {
         recruiters.findAll().stream()
                 .filter(recruiter -> recruiter.getId().equals(appropriateRecruiter.getId()))
                 .forEach(recruiter -> recruiter.getAvailabilities().remove(interviewDate));
     }
 
-    private Recruiter findAnAppropriateRecruiter(LocalDate interviewDate, HRCandidate candidate) {
+    private HRRecruiter findAnAppropriateRecruiter(LocalDate interviewDate, HRCandidate candidate) {
         return recruiters.findAll().stream()
                 .filter(recruiter -> recruiter.getAvailabilities().contains(interviewDate))
                 .filter(recruiter -> recruiter.getSkills().containsAll(candidate.getSkills()))
