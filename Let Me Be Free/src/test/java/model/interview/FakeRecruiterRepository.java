@@ -7,7 +7,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 public class FakeRecruiterRepository implements RecruiterRepository {
 
@@ -109,9 +110,7 @@ public class FakeRecruiterRepository implements RecruiterRepository {
 
     @Override
     public List<HRRecruiter> findAll() {
-        return recruiters.stream()
-                .map(HRRecruiter::new)
-                .collect(Collectors.toList());
+        return recruiters.stream().map(HRRecruiter::new).collect(toList());
     }
 
 }
