@@ -1,8 +1,10 @@
 package model.interview;
 
 import model.Candidate;
+import use_case.AnyRecruiterIsAvailableException;
 import use_case.CandidateIdMissingException;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static java.util.Objects.isNull;
@@ -28,5 +30,13 @@ public class HRCandidate {
         if (isNull(candidateId) || candidateId.isBlank()) {
             throw new CandidateIdMissingException();
         }
+    }
+
+    public HRRecruiter findRecruiter(LocalDate interviewDate, List<HRRecruiter> hrRecruiters) {
+        return hrRecruiters.stream()
+                .filter(recruiter -> recruiter.isAvailable(interviewDate))
+                .filter(recruiter -> recruiter.canTest(this))
+                .findFirst()
+                .orElseThrow(AnyRecruiterIsAvailableException::new);
     }
 }

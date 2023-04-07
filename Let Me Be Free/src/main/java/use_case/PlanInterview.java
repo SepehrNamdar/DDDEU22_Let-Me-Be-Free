@@ -1,6 +1,5 @@
 package use_case;
 
-import model.Recruiter;
 import model.Space;
 import model.interview.*;
 
@@ -24,13 +23,14 @@ public class PlanInterview {
         candidate.checkCandidate();
         checkInterviewDate(interviewDate);
 
-        HRRecruiter appropriateRecruiter = findAnAppropriateRecruiter(interviewDate, candidate);
-        bookRecruiter(interviewDate, appropriateRecruiter);
+        List<HRRecruiter> hrRecruiters = recruiters.findAll();
+        HRRecruiter recruiter = candidate.findRecruiter(interviewDate, hrRecruiters);
+        recruiter.book(interviewDate);
         Space bookedRoom = rooms.book(interviewDate);
 
         checkRoom(bookedRoom);
 
-        return new Interview(appropriateRecruiter, candidate, interviewDate, bookedRoom);
+        return new Interview(recruiter, candidate, interviewDate, bookedRoom);
     }
 
     private void checkRoom(Space bookedRoom) {
@@ -42,20 +42,6 @@ public class PlanInterview {
             // cancel the room and generate an online interview link ?
             // many questions to ask and all depends on a system on which we don't have a control
         }
-    }
-
-    private void bookRecruiter(LocalDate interviewDate, HRRecruiter appropriateRecruiter) {
-        recruiters.findAll().stream()
-                .filter(recruiter -> recruiter.getId().equals(appropriateRecruiter.getId()))
-                .forEach(recruiter -> recruiter.getAvailabilities().remove(interviewDate));
-    }
-
-    private HRRecruiter findAnAppropriateRecruiter(LocalDate interviewDate, HRCandidate candidate) {
-        return recruiters.findAll().stream()
-                .filter(recruiter -> recruiter.getAvailabilities().contains(interviewDate))
-                .filter(recruiter -> recruiter.getSkills().containsAll(candidate.getSkills()))
-                .findFirst()
-                .orElseThrow(AnyRecruiterIsAvailableException::new);
     }
 
     private void checkInterviewDate(LocalDate interviewDate) {
