@@ -45,8 +45,8 @@ public class FakeConsultantRepository implements ConsultantRepository {
                                         .dateOfBirth(LocalDate.of(1956, 8, 29))
                                         .build()))
                         .availabilities(new ArrayList<>(List.of(
-                                LocalDate.of(2023, 12, 22),
-                                LocalDate.of(2023, 12, 20))))
+                                LocalDate.of(2024, 12, 22),
+                                LocalDate.of(2024, 12, 20))))
                         .skills(List.of("Java"))
                         .experience(5)
                         .iban("AL47 2121 1009 0000 0002 3569 87411")
@@ -61,8 +61,8 @@ public class FakeConsultantRepository implements ConsultantRepository {
                         .address("Chapman 711-2880 Nulla St. Mankato Mississippi 96522")
                         .dateOfBirth(LocalDate.of(1995, 3, 3))
                         .availabilities(new ArrayList<>(List.of(
-                                LocalDate.of(2023, 12, 21),
-                                LocalDate.of(2023, 12, 22))))
+                                LocalDate.of(2024, 12, 21),
+                                LocalDate.of(2024, 12, 22))))
                         .skills(List.of("PHP", "Java"))
                         .build());
         recruiters.add(Recruiter.builder()
@@ -70,7 +70,7 @@ public class FakeConsultantRepository implements ConsultantRepository {
                         .name("Jones")
                         .firstName("Sara")
                         .availabilities(new ArrayList<>(List.of(
-                                LocalDate.of(2023, 12, 19))))
+                                LocalDate.of(2024, 12, 19))))
                         .candidates(List.of(
                                 Candidate.builder()
                                         .id("654")
@@ -102,8 +102,8 @@ public class FakeConsultantRepository implements ConsultantRepository {
         recruiters.add(Recruiter.builder()
                         .id("101").name("Steve").firstName("Emma")
                         .availabilities(new ArrayList<>(List.of(
-                                LocalDate.of(2023, 12, 19),
-                                LocalDate.of(2023, 12, 22))))
+                                LocalDate.of(2024, 12, 19),
+                                LocalDate.of(2024, 12, 22))))
                         .skills(List.of("PHP", "Java"))
                         .build());
     }
