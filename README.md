@@ -54,3 +54,5 @@ Interview : A structured conversation where one participant asks questions, and 
 Room : A place where the Interview will take place
 
 Human Resource : A member of HR department who will be in charged to organize the Interview
+
+Skill : A technical technology that is mastered by a Candidate and/or a Consultant and figure out on their Profile
