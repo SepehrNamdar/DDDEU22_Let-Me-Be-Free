@@ -28,7 +28,7 @@ class PlanInterviewShould {
 
     @Test
     void not_schedule_an_interview_for_a_profile_without_identifier() {
-        InterviewDate interviewDate = new InterviewDate(LocalDate.of(2024, 12, 19));
+        InterviewDate interviewDate = new InterviewDate(LocalDate.of(2034, 12, 19));
         Candidate candidate = Candidate.builder().build();
         Profile profileWithoutId = new Profile(candidate);
 
@@ -60,7 +60,7 @@ class PlanInterviewShould {
 
     @Test
     void plan_an_interview_with_the_first_consultant_who_is_available_for_the_interview_and_can_test_the_profile() {
-        InterviewDate interviewDate = new InterviewDate(LocalDate.of(2024, 12, 19));
+        InterviewDate interviewDate = new InterviewDate(LocalDate.of(2034, 12, 19));
 
         Interview interview = humanResource.scheduleInterview(interviewDate, getJavaProfile());
 
