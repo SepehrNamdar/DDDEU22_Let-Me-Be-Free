@@ -28,7 +28,7 @@ class PlanInterviewShould {
 
     @Test
     void not_schedule_an_interview_for_a_candidate_without_identifier() {
-        LocalDate interviewDate = LocalDate.of(2024, 12, 19);
+        LocalDate interviewDate = LocalDate.of(2034, 12, 19);
         Candidate candidateWithoutId = Candidate.builder().build();
 
         ThrowingCallable planningInterview =
@@ -67,7 +67,7 @@ class PlanInterviewShould {
 
     @Test
     void plan_an_interview_with_the_first_recruiter_who_is_available_for_the_interview_and_can_test_the_candidate() {
-        LocalDate interviewDate = LocalDate.of(2024, 12, 19);
+        LocalDate interviewDate = LocalDate.of(2034, 12, 19);
 
         Interview interview = humanResource.scheduleInterview(interviewDate, getJavaCandidate());
 
